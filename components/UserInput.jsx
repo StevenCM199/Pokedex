@@ -19,7 +19,7 @@ const UserInput = () => {
   return (
     <div className="trainer-name">
       <h1>Enter your name, trainer!</h1>
-      <img className="red-png" src="src\assets\red.png" alt="" />
+      <img className="red-png" src="https://i.pinimg.com/originals/cf/9c/0a/cf9c0a845520e3a30673b8e32fc4ba8d.png" alt="" />
       <input 
         type="text" 
         value= {pokeName}

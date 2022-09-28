@@ -76,31 +76,33 @@ const Pokemon = () => {
 
   return (
     <div>
-      <h1>Pokedex</h1>
-      <p>Welcome {name}</p>
+      <div className="pokedex-upper">
+        <h1>Pokedex</h1>
+        <p>Welcome {name}</p>
 
-      <div className="search-bar">
-        <input
-          type="text" 
-          placeholder="search via name"
-          value={nameInput}
-          onChange={(e) => setNameInput(e.target.value)}
-        />
-        <button onClick={searchPokemon}> Search </button>
+        <div className="search-bar">
+          <input
+            type="text" 
+            placeholder="search via name"
+            value={nameInput}
+            onChange={(e) => setNameInput(e.target.value)}
+          />
+          <button onClick={searchPokemon}> Search </button>
+        </div>
+
+        <div>
+          <select title="Select a type"
+            onChange={(e) => searchTypes(e.target.value)}>
+            <option value=""> Search via type </option>
+            {typesList.map((type) => (
+              <option value={type.url} key={type.url}>
+                {type.name}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
-
-      <div>
-        <select title="Select a type"
-          onChange={(e) => searchTypes(e.target.value)}>
-          <option value=""> Search via type </option>
-          {typesList.map((type) => (
-            <option value={type.url} key={type.url}>
-              {type.name}
-            </option>
-          ))}
-        </select>
-      </div>
-
+      
       <div className="pokemon-container">
         {pokesPaginated.map((pokemon) => (
           <PokemonCard 
@@ -110,17 +112,20 @@ const Pokemon = () => {
         ))}
       </div>
 
-      <ReactPaginate
-        previousLabel={"Previous"}
-        nextLabel={"Next"}
-        pageCount={totalPages}
-        onPageChange={changePage}
-        containerClassName={"navigationButtons"}
-        previousLinkClassName={"previousButton"}
-        nextLinkClassName={"nextButton"}
-        disabledClassName={"navigationDisabled"}
-        activeClassName={"navigationActive"}
-      />
+      <div className="pokedex-lower">
+        <ReactPaginate
+          previousLabel={"<"}
+          nextLabel={">"}
+          pageCount={totalPages}
+          onPageChange={changePage}
+          containerClassName={"navigationButtons"}
+          previousLinkClassName={"previousButton"}
+          nextLinkClassName={"nextButton"}
+          disabledClassName={"navigationDisabled"}
+          activeClassName={"navigationActive"}
+        />
+      </div>
+      
     </div>
   );
 };
